@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Koalla Holla</title>
-    <link rel="stylesheet" href="views/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer src="scripts/client.js" charset="utf-8"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <header>
@@ -20,7 +21,7 @@
       <input type="text" id="colorIn" value="" placeholder="Favorite Color">
       <input type="text" id="readyForTransferIn" value="" placeholder="Transfer">
       <input type="text" id="notesIn" value="" placeholder="Notes">
-      <button type="button" id="addButton">Add Koala</button>
+      <button onclick="addKoala (event) " type="button" id="addButton">Add Koala</button>
     </section>
     <section>
       <h2>All Koalas</h2>
