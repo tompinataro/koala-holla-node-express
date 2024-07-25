@@ -1,6 +1,7 @@
 console.log( 'js' );
 getKoalas();
 
+// ~~~~~~~~~~~ NOTE: console.logs made here are displayed on browser!!!!!!
 // ===================== GET FUNCTION =====================
 
 function getKoalas() {
@@ -27,9 +28,29 @@ function getKoalas() {
 
 function displayKoalas(data) {
   console.log('This is the data to be displayed. Is this correct?:', data);
+  let viewKoalas = document.getElementById('viewKoalas');
 
+  // IF ready_to_transfer === true, 'Ready for Transfer' button doesn't exist
+  // ELSE, 'Ready for Transfer' button exists
+  viewKoalas.innerHTML = '';
   for(let koala of data) {
-    document.getElementById('viewKoalas').innerHTML += `
+
+    console.log(`Is ${koala.name} ready to transfer? ${koala.ready_to_transfer}`);
+    if(koala.ready_to_transfer === true) {
+      viewKoalas.innerHTML += `
+
+      <tr>
+        <td>${koala.name}</td>
+        <td>${koala.age}</td>
+        <td>${koala.favorite_color}</td>
+        <td>${koala.ready_to_transfer}</td>
+        <td>${koala.notes}</td>
+        <td></td>
+        <td><button onClick="deleteKoala(${koala.id})">Delete</button></td>
+      </tr>`;
+    
+    } else {
+      viewKoalas.innerHTML += `
 
       <tr>
         <td>${koala.name}</td>
@@ -40,13 +61,32 @@ function displayKoalas(data) {
         <td><button onClick="readyKoala(${koala.id})">Ready for Transfer</button></td>
         <td><button onClick="deleteKoala(${koala.id})">Delete</button></td>
       </tr>`;
+
+    } // end of IF statement
     
   } // end of FOR loop
 } // end of displayKoalas
 
+// ===================== DELETE FUNCTION (Needs getKoalas function in .then) =====================
 
+function deleteKoala(koalaId) {
+  console.log('This is the koala\'s id in client:', koalaId);
 
+  axios({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`
+  })
 
+  .then((response) => {
+    console.log(`${koalaId} has been deleted:`, response);
+
+    getKoalas();
+  })
+
+  .catch((err) => {
+    console.log(`${koalaId} did not get deleted:`, err);
+  })
+}
 
 
 
