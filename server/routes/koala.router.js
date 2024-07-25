@@ -8,7 +8,7 @@ let koalaList = []
 
 
 // GET
-router.get('/', (req, res) => {
+koalaRouter.get('/', (req, res) => {
     let queryText = `
     SELECT * FROM "koalas"  
     `
