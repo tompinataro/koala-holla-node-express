@@ -1,11 +1,9 @@
 const express = require('express');
 const koalaRouter = express.Router();
 
-const pool = require('../modules/pool.js')
-let koalaList = []
 
 // DB CONNECTION
-
+const pool = require('../modules/pool.js')
 
 // GET
 koalaRouter.get('/', (req, res) => {
@@ -14,7 +12,7 @@ koalaRouter.get('/', (req, res) => {
     `
     pool.query(queryText)
     .then(dbResult => {
-        res.send(koalaList.rows)
+        res.send(dbResult.rows)
     })
     .catch(dbError => {
         console.log('sql query error',dbError);
