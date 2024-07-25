@@ -35,6 +35,7 @@ function displayKoalas(data) {
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.favorite_color}</td>
+        <td>${koala.ready_to_transfer}</td>
         <td>${koala.notes}</td>
         <td><button onClick="readyKoala(${koala.id})">Ready for Transfer</button></td>
         <td><button onClick="deleteKoala(${koala.id})">Delete</button></td>
