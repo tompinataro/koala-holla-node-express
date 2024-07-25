@@ -47,8 +47,20 @@ function displayKoalas(data) {
 
 
 
-
-
+// ============ UPDATE TRANSFER STATUS ==================
+function readyKoala(koala_id) {
+  axios ({
+    method: 'PUT',
+    url: `/koalas/${koala_id}`,
+    data: {status: 'true'}
+  })
+  .then((response) => {
+    getKoalas();
+  })
+  .catch((error) => {
+    console.log('error updating Transfer status',error)
+  })
+}
 
 
 
