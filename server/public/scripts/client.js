@@ -33,7 +33,11 @@ let incomingKoalas = {
   ready_to_transfer:readyForTransfer,
   notes: notes
 }
+  
+
   console.log("incomingObject:", incomingKoalas);
+
+  
 
   //4.sends object to server.js using axios
   axios({
@@ -42,7 +46,7 @@ let incomingKoalas = {
     data: incomingKoalas
   }).then(function(response) {
     console.log(response.data);
-
+    document.getElementById('form').reset();
 //insert function() from Jen & Elwood's GET route here
 
   }).catch(function(error) {

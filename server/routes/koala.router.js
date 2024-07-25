@@ -28,13 +28,13 @@ koalaRouter.post('/', (req, res) => {
       req.body.notes
     ];
     pool.query(sqlText, sqlValues)
-//       .then((dbResult) => {
-//         res.sendStatus(200);
-//       })
-//       .catch((dbErr) => {
-//         console.log('SQL query in POST /songs error:', dbErr);
-//         res.sendStatus(500);
-//       })
+      .then((dbResult) => {
+        res.sendStatus(200);
+      })
+      .catch((dbErr) => {
+        console.log('SQL query in POST /koalas error:', dbErr);
+        res.sendStatus(500);
+      })
     
   });
 
