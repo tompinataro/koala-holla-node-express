@@ -9,7 +9,8 @@ const pool = require('../modules/pool.js')
 // GET
 koalaRouter.get('/', (req, res) => {
     let queryText = `
-    SELECT * FROM "koalas"  
+    SELECT * FROM "koalas"
+        ORDER BY "name";  
     `
     pool.query(queryText)
     .then(dbResult => {
@@ -60,7 +61,7 @@ koalaRouter.put ('/:koala_id', (req, res) => {
     
     const sqlText = `
         UPDATE "koalas"
-            SET "ready_to_transfer" = TRUE
+            SET "ready_to_transfer" = NOT ready_to_transfer
             WHERE "id" = $1;
             `
     const sqlValues = [koalaToChange]
