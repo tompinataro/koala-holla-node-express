@@ -1,0 +1,14 @@
+button{
+    width: 100%;
+    padding: 10px 20px;
+    margin: 3px;
+}
+
+.green{
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+

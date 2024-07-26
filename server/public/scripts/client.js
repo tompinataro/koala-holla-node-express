@@ -33,6 +33,18 @@ function displayKoalas(data) {
   // IF ready_to_transfer === true, 'Ready for Transfer' button doesn't exist
   // ELSE, 'Ready for Transfer' button exists
   viewKoalas.innerHTML = '';
+
+  // Adding color toggle
+  for (readyKoala button) {
+    readyKoala[button].onclick = function() {
+        console.log('test')
+        var yellowButton = document.querySelectorAll(".yellow")[0];
+        if (this.className == "green") {
+            if (yellowButton) yellowButton.className = "green";
+            this.className = "yellow";
+        }
+    }
+}
   for(let koala of data) {
 
     console.log(`Is ${koala.name} ready to transfer? ${koala.ready_to_transfer}`);
