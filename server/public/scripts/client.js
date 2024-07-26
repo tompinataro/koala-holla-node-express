@@ -72,21 +72,36 @@ function displayKoalas(data) {
 function deleteKoala(koalaId) {
   console.log('This is the koala\'s id in client:', koalaId);
 
-  axios({
-    method: 'DELETE',
-    url: `/koalas/${koalaId}`
-  })
+  Swal.fire({
+    title: "Are you sure you want to delete?",
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: "Yes, Delete",
+    denyButtonText: `No, Do Not Delete`
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      Swal.fire("Deleted", "", "success");
+      axios({
+        method: 'DELETE',
+        url: `/koalas/${koalaId}`
+      })
+    
+      .then((response) => {
+        console.log(`${koalaId} has been deleted:`, response);
+    
+        getKoalas();
+      })
+    
+    
+      .catch((err) => {
+        console.log(`${koalaId} did not get deleted:`, err);
+      })
+    } else if (result.isDenied) {
+      Swal.fire("No Changes Made", "", "success");
+    }
+  });
 
-  .then((response) => {
-    console.log(`${koalaId} has been deleted:`, response);
-
-    getKoalas();
-  })
-
-
-  .catch((err) => {
-    console.log(`${koalaId} did not get deleted:`, err);
-  })
 }
 
 
@@ -145,7 +160,8 @@ let incomingKoalas = {
   }).then(function(response) {
     console.log(response.data);
     document.getElementById('form').reset();
-//insert function() from Jen & Elwood's GET route here
+
+    getKoalas();
 
   }).catch(function(error) {
     console.log('error in KoalasPOST', error); 
